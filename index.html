@@ -18,7 +18,7 @@
                 </span>
                 <!-- Backlog Content -->
                 <div id="backlog-content" class="custom-scroll">
-                    <ul class="drag item-list" id="backlog-list">
+                    <ul class="drag item-list" id="backlog-list" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(0)">
                     </ul>
                 </div>
                 <!-- Add button group -->
@@ -38,11 +38,11 @@
 <!-- Progress column -->
             <li class="drag-column progress-column">
                 <span class="header">
-                    <h1>progress</h1>
+                    <h1>Progress</h1>
                 </span>
                 <!-- progress Content -->
                 <div id="backlog-content" class="custom-scroll">
-                    <ul class="drag item-list" id="progress-list">
+                    <ul class="drag item-list" id="progress-list" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(1)">
                     </ul>
                 </div>
                 <!-- Add button group -->
@@ -62,11 +62,11 @@
 <!-- Complete column -->
             <li class="drag-column complete-column">
                 <span class="header">
-                    <h1>complete</h1>
+                    <h1>Complete</h1>
                 </span>
                 <!-- complete Content -->
                 <div class="complete-content">
-                    <ul id="backlog-content" class="custom-scroll">
+                    <ul id="backlog-content" class="custom-scroll" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(2)">
                     </ul>
                 </div>
                 <!-- Add button group -->
@@ -86,11 +86,11 @@
 <!-- On-hold column -->
             <li class="drag-column on-hold-column">
                 <span class="header">
-                    <h1>on-hold</h1>
+                    <h1>On-hold</h1>
                 </span>
                 <!-- on-hold Content -->
                 <div class="on-hold-content">
-                    <ul id="backlog-content" class="custom-scroll">
+                    <ul id="backlog-content" class="custom-scroll" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(3)">
                     </ul>
                 </div>
                 <!-- Add button group -->
