@@ -26,6 +26,7 @@ let currentColumn;
 // Get Arrays from localStorage if available, set default values if not
 function getSavedColumns() {
   if (localStorage.getItem('backlogItems')) {
+    console.log("jumalauta");
     backlogListArray = JSON.parse(localStorage.backlogItems);
     progressListArray = JSON.parse(localStorage.progressItems);
     completeListArray = JSON.parse(localStorage.completeItems);
@@ -72,26 +73,51 @@ function updateDOM() {
   // Backlog Column
   backlogList.textContent = "";
   backlogListArray.forEach((backlogItem, index) => {
-    createItemEl(backlogList, 0, backlogItem., index);
+    createItemEl(backlogList, 0, backlogItem.index);
   });
   // Progress Column
   progressList.textContent = "";
   progressListArray.forEach((backlogItem, index) => {
-    createItemEl(progressList, 0, backlogItem., index);
+    createItemEl(progressList, 0, backlogItem.index);
   });
   // Complete Column
   completeList.textContent = "";
   completeListArray.forEach((backlogItem, index) => {
-    createItemEl(completeList, 0, backlogItem., index);
+    createItemEl(completeList, 0, backlogItem.index);
   });
   // On Hold Column
   onHoldList.textContent = "";
   onHoldListArray.forEach((backlogItem, index) => {
-    createItemEl(onHoldList, 0, backlogItem., index);
+    createItemEl(onHoldList, 0, backlogItem.index);
   });
   // Run getSavedColumns only once, Update Local Storage
   updatedOnLoad = true;
   updateSavedColumns();
+}
+
+// Add to column list, reset TextBox
+function addToColumn(column) {
+  const itemText = addItems[column].textContent;
+  const selectedArray = listArrays[column];
+  selectedArray.push(itemText);
+  addItems[column].textContent = "";
+  updateDOM();
+}
+
+
+// Show Add Item input Box
+function showInputBox(column) {
+  addBtns[column].style.visibility = "hidden";
+  saveItemBtns[column].style.display = "flex";
+  addItemContainers[column].style.display = "flex";
+}
+
+// Hide item input Box
+function hideInputBox(column) {
+  addBtns[column].style.visibility = "visible";
+  saveItemBtns[column].style.display = "none";
+  addItemContainers[column].style.display = "none";
+  addToColumn(column);
 }
 
 // Allows arrays to reflect Drag and Drop items

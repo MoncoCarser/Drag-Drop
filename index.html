@@ -23,16 +23,16 @@
                 </div>
                 <!-- Add button group -->
                 <div class="add-btn-group">
-                    <div class="add-btn">
+                    <div class="add-btn" onclick="showInputBox(0)">
                         <span class="plus-sign">+</span>
                         <span>Add Item</span>
                     </div>
-                    <div class="add-btn solid">
+                    <div class="add-btn solid" onclick="hideInputBox(0)">
                         <span>Save Item</span>
                     </div>
-                    <div class="add-container">
-                        <div class="add-item"></div>
-                    </div>
+                </div>
+                <div class="add-container">
+                    <div class="add-item" contenteditable="true"></div>
                 </div>
             </li>
 <!-- Progress column -->
@@ -47,16 +47,16 @@
                 </div>
                 <!-- Add button group -->
                 <div class="add-btn-group">
-                    <div class="add-btn">
+                    <div class="add-btn" onclick="showInputBox(1)">
                         <span class="plus-sign">+</span>
                         <span>Add Item</span>
                     </div>
-                    <div class="add-btn solid">
+                    <div class="add-btn solid" onclick="hideInputBox(1)">
                         <span>Save Item</span>
                     </div>
-                    <div class="add-container">
-                        <div class="add-item"></div>
-                    </div>
+                </div>
+                <div class="add-container">
+                    <div class="add-item" contenteditable="true"></div>
                 </div>
             </li>
 <!-- Complete column -->
@@ -65,22 +65,22 @@
                     <h1>Complete</h1>
                 </span>
                 <!-- complete Content -->
-                <div class="complete-content">
-                    <ul id="backlog-content" class="custom-scroll" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(2)">
+                <div id="complete-content">
+                    <ul class="backlog-content" class="custom-scroll" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(2)">
                     </ul>
                 </div>
                 <!-- Add button group -->
                 <div class="add-btn-group">
-                    <div class="add-btn">
+                    <div class="add-btn" onclick="showInputBox(2)">
                         <span class="plus-sign">+</span>
                         <span>Add Item</span>
                     </div>
-                    <div class="add-btn solid">
+                    <div class="add-btn solid" onclick="hideInputBox(2)">
                         <span>Save Item</span>
                     </div>
-                    <div class="add-container">
-                        <div class="add-item"></div>
-                    </div>
+                </div>
+                <div class="add-container">
+                    <div class="add-item" contenteditable="true"></div>
                 </div>
             </li>
 <!-- On-hold column -->
@@ -89,22 +89,22 @@
                     <h1>On-hold</h1>
                 </span>
                 <!-- on-hold Content -->
-                <div class="on-hold-content">
-                    <ul id="backlog-content" class="custom-scroll" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(3)">
+                <div id="on-hold-content">
+                    <ul class="backlog-content" class="custom-scroll" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(3)">
                     </ul>
                 </div>
                 <!-- Add button group -->
                 <div class="add-btn-group">
-                    <div class="add-btn">
+                    <div class="add-btn" onclick="showInputBox(3)">
                         <span class="plus-sign">+</span>
                         <span>Add Item</span>
                     </div>
-                    <div class="add-btn solid">
+                    <div class="add-btn solid" onclick="hideInputBox(3)">
                         <span>Save Item</span>
                     </div>
-                    <div class="add-container">
-                        <div class="add-item"></div>
-                    </div>
+                </div>
+                <div class="add-container">
+                    <div class="add-item" contenteditable="true"></div>
                 </div>
             </li>
         </ul>
