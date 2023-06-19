@@ -50,16 +50,16 @@ function updateSavedColumns() {
 
 // Create DOM Elements for each list item
 function createItemEl(columnEl, column, item, index) {
-  // console.log('columnEl:', columnEl);
-  // console.log('column:', column);
-  // console.log('item:', item);
-  // console.log('index:', index);
+ console.log('item:', item);
+ console.log('column:', column);
+ console.log('index:', index);
   // List Item
   const listEl = document.createElement('li');
   listEl.classList.add('drag-item');
   listEl.textContent = item;
   listEl.draggable = true;
-  listEl.setAttribute("ondragstart", "drag(event)")
+  listEl.setAttribute("ondragstart", "drag(event)");
+  listEl.contentEditable = true;
   // Append 
   columnEl.appendChild(listEl);
 }
