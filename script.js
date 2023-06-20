@@ -21,6 +21,7 @@ let listArrays = [];
 
 // Drag Functionality
 let draggedItem;
+let dragging = false;
 let currentColumn;
 
 // Get Arrays from localStorage if available, set default values if not
@@ -48,11 +49,14 @@ function updateSavedColumns() {
   });
 }
 
+// Filter arrays to remove empty items
+function filterArray(array) {
+  const filteredArray = array.filter(item => item !== null);
+  return filterArray;
+}
+
 // Create DOM Elements for each list item
 function createItemEl(columnEl, column, item, index) {
- console.log('item:', item);
- console.log('column:', column);
- console.log('index:', index);
   // List Item
   const listEl = document.createElement('li');
   listEl.classList.add('drag-item');
@@ -60,6 +64,8 @@ function createItemEl(columnEl, column, item, index) {
   listEl.draggable = true;
   listEl.setAttribute("ondragstart", "drag(event)");
   listEl.contentEditable = true;
+  listEl.id = index;
+  listEl.setAttribute("onfocusout", "updateItem(${index}, ${column})");
   // Append 
   columnEl.appendChild(listEl);
 }
@@ -73,26 +79,44 @@ function updateDOM() {
   // Backlog Column
   backlogList.textContent = "";
   backlogListArray.forEach((backlogItem, index) => {
-    createItemEl(backlogList, 0, backlogItem.index);
+    createItemEl(backlogList, 0, backlogItem, index);
   });
+  backlogListArray = filterArray(backlogListArray);
   // Progress Column
   progressList.textContent = "";
   progressListArray.forEach((backlogItem, index) => {
-    createItemEl(progressList, 0, backlogItem.index);
+    createItemEl(progressList, 1, backlogItem, index);
   });
+  progressListArray = filterArray(progressListArray);
   // Complete Column
   completeList.textContent = "";
   completeListArray.forEach((backlogItem, index) => {
-    createItemEl(completeList, 0, backlogItem.index);
+    createItemEl(completeList, 2, backlogItem, index);
   });
+  completeListArray = filterArray(completeListArray);
   // On Hold Column
   onHoldList.textContent = "";
   onHoldListArray.forEach((backlogItem, index) => {
-    createItemEl(onHoldList, 0, backlogItem.index);
+    createItemEl(onHoldList, 3, backlogItem, index);
   });
+  onHoldListArray = filterArray(onHoldListArray);
   // Run getSavedColumns only once, Update Local Storage
   updatedOnLoad = true;
   updateSavedColumns();
+}
+
+// Update Item - Delete if necessary, or update Array value
+function updateItem(id, column) {
+  const selectedArray = listArrays[column];
+  const selectedColumnEl = listColumns[column].children;
+  if (!dragging) {
+    if (!selectedColumnEl[id].textContent) {
+    delete selectedArray[id];
+   } else {
+    selectedArray[id] = selectedColumnEl[id].textContent;
+   }
+   updateDOM();
+  }
 }
 
 // Add to column list, reset TextBox
@@ -144,6 +168,7 @@ function hideInputBox(column) {
 // When Item Starts Dragging
 function drag(e) {
   draggedItem = e.target;
+  dragging = true;
 }
 
 // Column allows for item to drop
@@ -166,6 +191,8 @@ function drop(e) {
   // Add item to column
   const parent = listColumns[currentColumn];
   parent.appendChild(draggedItem);
+  // Dragging complete
+  dragging = false;
   rebuildArrays();
 }
 // On load
